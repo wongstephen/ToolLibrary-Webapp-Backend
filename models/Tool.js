@@ -1,24 +1,27 @@
 const mongoose = require("../db/connection");
 const Schema = mongoose.Schema;
-const ToolSchema = require("./Tool");
 
-const UserSchema = new Schema(
+const ToolSchema = new Schema(
   {
-    email: {
+    name: {
       type: String,
-      required: true,
-      unique: true,
     },
-    password: {
+    photo: {
       type: String,
+    },
+    loanee: {
+      type: String,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
-    tool: [ToolSchema],
   },
   {
     timestamps: true,
+    // prevents password return to user.
     toJSON: {
-      //Prevents password return to user.
       virtuals: true,
       transform: (_doc, ret) => {
         delete ret.password;
@@ -28,4 +31,4 @@ const UserSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = ToolSchema;
