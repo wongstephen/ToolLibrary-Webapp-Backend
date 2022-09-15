@@ -13,6 +13,10 @@ app.use(cors());
 const requestLogger = require("./middleware/request_logger.js");
 app.use(requestLogger);
 
+// Custom Errors
+const { handleErrors } = require("./middleware/custom_errors");
+app.use(handleErrors);
+
 app.get("/", (req, res) => {
   res.send("Welcome to the Tool Loaner App");
 });
@@ -21,8 +25,8 @@ app.get("/", (req, res) => {
 const userController = require("./controllers/userController");
 app.use("/users", userController);
 
-// const cvController = require("./controllers/toolController");
-// app.use("/tools", cvController);
+const cvController = require("./controllers/toolController");
+app.use("/tools", cvController);
 
 // const userController = require("./controllers/loaneeController");
 // app.use("/loanee", userController);

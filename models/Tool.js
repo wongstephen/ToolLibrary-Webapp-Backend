@@ -5,12 +5,14 @@ const ToolSchema = new Schema(
   {
     name: {
       type: String,
+      trim: true,
     },
     photo: {
       type: String,
     },
     loanee: {
       type: String,
+      trim: true,
     },
     owner: {
       type: Schema.Types.ObjectId,
