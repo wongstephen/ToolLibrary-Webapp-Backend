@@ -11,17 +11,18 @@ const {
 const { requireToken } = require("../middleware/auth");
 
 //get tools
-router.get("/", async (req, res, next) => {
+router.get("/", requireToken, async (req, res, next) => {
   try {
-    const data = await Tool.find({});
-    res.json(data);
+    const userId = req.user._id;
+    const data = await User.findById(userId);
+    res.json(data.tool);
   } catch (err) {
     next(err);
   }
 });
 
 //create
-router.post("/", async (req, res, next) => {
+router.post("/", requireToken, async (req, res, next) => {
   try {
     const toolData = req.body;
     const userId = toolData.owner;
@@ -35,7 +36,7 @@ router.post("/", async (req, res, next) => {
 });
 
 // delete /tool/:id
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", requireToken, (req, res, next) => {
   const id = req.params.id;
   User.findOne({ "tool._id": id })
     .then((user) => {
