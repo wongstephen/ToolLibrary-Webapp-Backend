@@ -25,8 +25,8 @@ router.get("/", requireToken, async (req, res, next) => {
 router.post("/", requireToken, async (req, res, next) => {
   try {
     const toolData = req.body;
-    const userId = toolData.owner;
-    const user = await User.findById(userId);
+    toolData.owner = req.user._id;
+    const user = await User.findById(toolData.owner);
     await user.tool.push(toolData);
     await user.save();
     return res.status(201).json(user);

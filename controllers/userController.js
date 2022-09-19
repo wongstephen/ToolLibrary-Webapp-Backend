@@ -50,33 +50,6 @@ router.post("/signin", async (req, res, next) => {
   }
 });
 /* 
-// create /users/signup
-router.post("/signup", async (req, res, next) => {
-  try {
-    const password = await bcrypt.hash(req.body.password, 10);
-    const user = await User.create({
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      email: req.body.email,
-      password,
-    });
-    res.status(201).json(user);
-  } catch (err) {
-    next(err);
-  }
-});
-
-// create token /users/signin
-const { createUserToken } = require("../middleware/auth");
-router.post("/signin", async (req, res, next) => {
-  try {
-    const user = await User.findOne({ email: req.body.email });
-    const token = createUserToken(req, user);
-    res.json({ token, id: user.id, firstname: user.firstname });
-  } catch (err) {
-    next(err);
-  }
-});
 
 router.delete("/:id", requireToken, async (req, res, next) => {
   try {
@@ -89,6 +62,7 @@ router.delete("/:id", requireToken, async (req, res, next) => {
  */
 
 //delete user at /user
+
 router.delete("/", async (req, res, next) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.body.userId);
