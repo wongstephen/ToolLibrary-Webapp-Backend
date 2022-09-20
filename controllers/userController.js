@@ -49,23 +49,11 @@ router.post("/signin", async (req, res, next) => {
     next(err);
   }
 });
-/* 
-
-router.delete("/:id", requireToken, async (req, res, next) => {
-  try {
-    const deletedData = await User.findByIdAndDelete(req.params.id);
-    res.json(deletedData);
-  } catch (err) {
-    next(err);
-  }
-});
- */
 
 //delete user at /user
-
-router.delete("/", async (req, res, next) => {
+router.delete("/", requireToken, async (req, res, next) => {
   try {
-    const deletedUser = await User.findByIdAndDelete(req.body.userId);
+    const deletedUser = await User.findByIdAndDelete(req.user._Id);
     res.json(deletedUser);
   } catch (err) {
     next(err);
@@ -73,7 +61,7 @@ router.delete("/", async (req, res, next) => {
 });
 
 // update users/:id
-router.patch("/:id", async (req, res, next) => {
+/* router.patch("/:id", async (req, res, next) => {
   try {
     const data = await User.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -86,6 +74,6 @@ router.patch("/:id", async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-});
+}); */
 
 module.exports = router;
