@@ -1,11 +1,11 @@
 const mongoose = require("../db/connection");
-const Schema = mongoose.Schema;
 
-const ToolSchema = new Schema(
+const ToolSchema = new mongoose.Schema(
   {
     name: {
       type: String,
       trim: true,
+      required: true,
     },
     photo: {
       type: String,
@@ -15,7 +15,7 @@ const ToolSchema = new Schema(
       trim: true,
     },
     owner: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Types.ObjectId,
       ref: "User",
       required: true,
     },

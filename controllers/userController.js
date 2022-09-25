@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const User = require("../models/User");
+// const Tool = require("../models/Tool");
 
 const bcrypt = require("bcrypt");
 const { createUserToken, requireToken } = require("../middleware/auth");
@@ -59,21 +60,5 @@ router.delete("/", requireToken, async (req, res, next) => {
     next(err);
   }
 });
-
-// update users/:id
-/* router.patch("/:id", async (req, res, next) => {
-  try {
-    const data = await User.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
-    if (data) {
-      res.json(data);
-    } else {
-      res.sendStatus(404);
-    }
-  } catch (err) {
-    next(err);
-  }
-}); */
 
 module.exports = router;

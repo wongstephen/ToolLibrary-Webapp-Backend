@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
-const Tool = require("../models/Tool");
+// const Tool = require("../models/Tool");
 
 const {
   handleValidateId,
   handleRecordExists,
   handleValidateOwnership,
 } = require("../middleware/custom_errors");
+
 const { requireToken } = require("../middleware/auth");
 
 //get tools
@@ -35,7 +36,39 @@ router.post("/", requireToken, async (req, res, next) => {
   }
 });
 
-// delete /tool/:id
+/* router.patch("/:id", requireToken, (req, res, next) => {
+  const id = req.params.id;
+  const toolData = req.body;
+
+  User.findOne({
+    "tool._id": id,
+  })
+    .then((user) => {
+      const tool = user.tool.id(id);
+      tool.set(toolData);
+      return user.save();
+    })
+    .then(() => res.sendStatus(418))
+    .catch(next);
+}); */
+
+router.patch("/:id", requireToken, async (req, res, next) => {
+  const id = req.params.id;
+  const toolData = req.body;
+  try {
+    const user = await User.findOne({
+      "tool._id": id,
+    });
+    const tool = user.tool.id(id);
+    tool.set(toolData);
+    user.save();
+    res.sendStatus(202);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// delete /tools/:id
 router.delete("/:id", requireToken, (req, res, next) => {
   const id = req.params.id;
   User.findOne({ "tool._id": id })
