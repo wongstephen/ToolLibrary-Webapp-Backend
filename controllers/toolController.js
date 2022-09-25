@@ -62,7 +62,7 @@ router.patch("/:id", requireToken, async (req, res, next) => {
     const tool = user.tool.id(id);
     tool.set(toolData);
     user.save();
-    res.sendStatus(202);
+    res.status(202).json(user);
   } catch (err) {
     next(err);
   }
