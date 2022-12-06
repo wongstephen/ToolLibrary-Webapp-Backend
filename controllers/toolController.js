@@ -61,7 +61,7 @@ router.delete("/:id", requireToken, (req, res, next) => {
       user.tool.id(id).remove();
       return user.save();
     })
-    .then(() => res.sendStatus(204))
+    .then(() => res.sendStatus(202).json(user))
     .catch(next);
 });
 
