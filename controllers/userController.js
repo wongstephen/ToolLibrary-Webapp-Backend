@@ -38,6 +38,7 @@ router.post("/signup", async (req, res, next) => {
     res.status(201).json(user);
   } catch (err) {
     next(err);
+    // next(err);
   }
 });
 // create /users/signin/
@@ -55,6 +56,16 @@ router.post("/signin", async (req, res, next) => {
 router.delete("/", requireToken, async (req, res, next) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.user._Id);
+    res.json(deletedUser);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete("/:id", async (req, res, next) => {
+  console.log();
+  try {
+    const deletedUser = await User.findByIdAndDelete(req.params.id);
     res.json(deletedUser);
   } catch (err) {
     next(err);

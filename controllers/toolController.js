@@ -36,22 +36,7 @@ router.post("/", requireToken, async (req, res, next) => {
   }
 });
 
-/* router.patch("/:id", requireToken, (req, res, next) => {
-  const id = req.params.id;
-  const toolData = req.body;
-
-  User.findOne({
-    "tool._id": id,
-  })
-    .then((user) => {
-      const tool = user.tool.id(id);
-      tool.set(toolData);
-      return user.save();
-    })
-    .then(() => res.sendStatus(418))
-    .catch(next);
-}); */
-
+// patch /tools/:id
 router.patch("/:id", requireToken, async (req, res, next) => {
   const id = req.params.id;
   const toolData = req.body;
