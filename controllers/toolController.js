@@ -1,7 +1,29 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
+// const multer = require("multer");
+// const cloudinary = require("cloudinary").v2;
+
 // const Tool = require("../models/Tool");
+
+// const upload = multer({
+//   storage: multer.diskStorage({}),
+//   limits: { fieldSize: 25 * 1024 * 1024 },
+//   fileFilter: (req, file, cb) => {
+//     let ext = path.extname(file.originalname);
+//     if (["png", "jpg", "jpeg", "webm"].indexOf(ext) >= 0) {
+//       cb(new Error("File type is not supported"), false);
+//       return;
+//     }
+//     cb(null, true);
+//   },
+// });
+
+// cloudinary.config({
+//   cloud_name: process.env.CLOUD_NAME,
+//   api_key: process.env.CLOUD_API_KEY,
+//   api_secret: process.env.CLOUD_API_SECRET,
+// });
 
 const {
   handleValidateId,

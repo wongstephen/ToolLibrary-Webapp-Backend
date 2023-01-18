@@ -19,6 +19,14 @@ const ToolSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    img: {
+      data: Buffer,
+      contentType: String,
+    },
+    avator: {
+      type: String,
+      trim: true,
+    },
   },
   {
     timestamps: true,
