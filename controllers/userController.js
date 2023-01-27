@@ -32,7 +32,7 @@ router.post("/signup", async (req, res, next) => {
   try {
     const hashedPw = await bcrypt.hash(req.body.password, 10);
     const user = await User.create({
-      email: req.body.email,
+      email: req.body.email.toLowerCase(),
       password: hashedPw,
     });
     res.status(201).json(user);
@@ -43,7 +43,7 @@ router.post("/signup", async (req, res, next) => {
 // create /users/signin/
 router.post("/signin", async (req, res, next) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: req.body.email.toLowerCase() });
     const token = createUserToken(req, user);
     res.json({ token });
   } catch (err) {
