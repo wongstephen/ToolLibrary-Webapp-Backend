@@ -5,6 +5,7 @@ const User = require("../models/User");
 
 const bcrypt = require("bcrypt");
 const { createUserToken, requireToken } = require("../middleware/auth");
+const seeds = require("../seeds");
 
 // read all
 // router.get("/", async (req, res, next) => {
@@ -17,7 +18,7 @@ const { createUserToken, requireToken } = require("../middleware/auth");
 // });
 
 // demo account
-const demo = async (email) => {
+const createDemo = async (email) => {
   if (email === "demo@toollibrary.com") {
     const demoEmail = "demo@toollibrary.com" + Math.floor(Math.random() * 1000);
     try {
@@ -27,12 +28,18 @@ const demo = async (email) => {
         password: hashedPw,
       });
     } catch (err) {
-      next(err);
+      throw err;
     }
     return demoEmail;
   } else {
     return;
   }
+};
+
+const seedDemo = async (demoEmail) => {
+  const user = await User.findOne({ email: demoEmail });
+  seeds.forEach((seed) => user.tool.push({ ...seed, owner: user._id }));
+  await user.save();
 };
 
 // read single
@@ -63,12 +70,13 @@ router.post("/signup", async (req, res, next) => {
 router.post("/signin", async (req, res, next) => {
   try {
     //creates a throwaway account for demo with unique email
-    const demoAcccount = await demo(req.body.email.toLowerCase());
+    const demoAcccount = await createDemo(req.body.email.toLowerCase());
     if (demoAcccount) {
       req.body.email = demoAcccount;
+      await seedDemo(demoAcccount);
     }
+
     const user = await User.findOne({ email: req.body.email.toLowerCase() });
-    console.log(req.body.email);
     const token = createUserToken(req, user);
     res.json({ token, user });
     console.log(res);
@@ -88,10 +96,20 @@ router.delete("/", requireToken, async (req, res, next) => {
 });
 
 router.delete("/:id", async (req, res, next) => {
-  console.log();
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
     res.json(deletedUser);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/deletedemos", async (req, res, next) => {
+  try {
+    const delDemo = await User.deleteMany({
+      email: { $regex: /demo/i },
+    });
+    res.json(delDemo);
   } catch (err) {
     next(err);
   }
