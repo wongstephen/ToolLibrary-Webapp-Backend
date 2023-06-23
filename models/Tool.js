@@ -20,8 +20,8 @@ const ToolSchema = new mongoose.Schema(
       required: true,
     },
     img: {
-      data: Buffer,
-      contentType: String,
+      type: String,
+      trim: true,
     },
     avator: {
       type: String,
