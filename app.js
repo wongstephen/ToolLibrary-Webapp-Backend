@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
+
 app.set("port", process.env.PORT || 8000);
 
 // Express Middleware
@@ -18,7 +19,7 @@ const { handleErrors } = require("./middleware/custom_errors");
 app.use(handleErrors);
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the Tool Loaner App");
+  res.send("<h1>Visit the Tool Library app at <a href='https://toollibrary.wongstephenk.com/'>https://toollibrary.wongstephenk.com/</a>");
 });
 
 // Controllers
