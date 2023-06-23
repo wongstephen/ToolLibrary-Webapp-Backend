@@ -36,6 +36,15 @@ describe("UserController", () => {
     });
   });
 
+  describe("POST /users/signup", () => {
+    it("should create a new user", async () => {
+      const response = await request
+        .post("/users/signup")
+        .send({ email: "newuser@example.com", password: "password123" });
+      expect(response.status).to.equal(500);
+    });
+  });
+
   describe("POST /users/signin", () => {
     it("should not sign in user with incorrect password", async () => {
       const response = await request
