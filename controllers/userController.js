@@ -89,7 +89,7 @@ router.post("/signin", async (req, res, next) => {
 router.delete("/", requireToken, async (req, res, next) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.user._Id);
-    res.json(deletedUser);
+    res.status(200).json(deletedUser);
   } catch (err) {
     next(err);
   }
@@ -98,9 +98,9 @@ router.delete("/", requireToken, async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
-    res.json(deletedUser);
+    res.status(200).json(deletedUser);
   } catch (err) {
-    next(err);
+    res.status(401);
   }
 });
 
