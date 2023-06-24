@@ -7,9 +7,6 @@ const ToolSchema = new mongoose.Schema(
       trim: true,
       required: true,
     },
-    photo: {
-      type: String,
-    },
     loanee: {
       type: String,
       trim: true,
@@ -19,7 +16,7 @@ const ToolSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    img: {
+    toolImage: {
       type: String,
       trim: true,
     },
