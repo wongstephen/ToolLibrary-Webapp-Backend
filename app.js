@@ -19,7 +19,7 @@ app.use(handleErrors);
 
 app.get("/", (req, res) => {
   res.send(
-    "<h1>Visit the Tool Library app at <a href='https://toollibrary.wongstephenk.com/'>https://toollibrary.wongstephenk.com/</a>"
+    "<h1>Visit the Tool Library app at <a href='https://toollibrary.wongstephenk.com/'>https://toollibrary.wongstephenk.com/</a>!!</h1>"
   );
 });
 

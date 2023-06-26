@@ -76,6 +76,7 @@ router.post(
       // form object with data and image url
       const toolData = req.body;
       toolData.owner = req.user._id;
+
       if (req.file) {
         // upload image to cloudinary
         const options = {
@@ -87,22 +88,22 @@ router.post(
         const result = await cloudinary.uploader.upload(req.file.path, options);
         const objectURL = result.secure_url;
         toolData.toolImage = objectURL;
+      }
 
-        /* What the object looks like:
+      /* What the object looks like:
         [Object: null prototype] {
         name: 'Shovel',
         loanee: 'Shawn2',
         owner: new ObjectId("633b02d53d77392fc7c342fa"),
         toolImage: 'https://res.cloudinary.com/dhibsqzad/image/upload/v1687638656/tool_library/539ffa410892d6208cb55c11df9ee5f7.jpg'
         } */
-      }
 
       const user = await User.findById(toolData.owner);
       await user.tool.push(toolData);
       await user.save();
-      return res.status(201).send("everything good");
+      return res.status(201).json("Image sucessfully Uplaoded").end();
     } catch (err) {
-      console.log(err);
+      next;
     }
   }
 );
