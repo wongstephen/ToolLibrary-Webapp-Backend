@@ -30,9 +30,6 @@ app.use("/users", userController);
 const cvController = require("./controllers/toolController");
 app.use("/tools", cvController);
 
-// const userController = require("./controllers/loaneeController");
-// app.use("/loanee", userController);
-
 const server = app.listen(app.get("port"), () => {
   console.log(`🏃 on port: ${app.get("port")}, better catch it!`);
 });

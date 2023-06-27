@@ -57,7 +57,7 @@ router.post("/", requireToken, async (req, res, next) => {
     const user = await User.findById(toolData.owner);
 
     await user.tool.push(toolData);
-    console.log(toolData);
+    // console.log(toolData);
     await user.save();
     return res.status(201).json(user);
   } catch (err) {

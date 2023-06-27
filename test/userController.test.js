@@ -37,7 +37,7 @@ describe("UserController", () => {
   });
 
   describe("POST /users/signup", () => {
-    it("should create a new user", async () => {
+    it("should not create a duplicate user", async () => {
       const response = await request
         .post("/users/signup")
         .send({ email: "newuser@example.com", password: "password123" });

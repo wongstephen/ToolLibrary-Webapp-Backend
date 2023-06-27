@@ -79,7 +79,7 @@ router.post("/signin", async (req, res, next) => {
     const user = await User.findOne({ email: req.body.email.toLowerCase() });
     const token = createUserToken(req, user);
     res.json({ token, user });
-    console.log(res);
+    // console.log(res);
   } catch (err) {
     next(err);
   }
