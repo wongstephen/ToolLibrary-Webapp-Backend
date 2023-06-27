@@ -13,5 +13,8 @@ jobs:
         with:
           node-version: "19"
       - run: npm ci
+      - name: "Create env file"
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
       - run: npm test
       - run: npm run build
