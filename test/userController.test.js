@@ -77,5 +77,9 @@ describe("UserController", () => {
         "newuser@example.com"
       );
     });
+
+    after(() => {
+      process.exit();
+    });
   });
 });
