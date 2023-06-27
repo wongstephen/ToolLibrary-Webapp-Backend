@@ -13,13 +13,12 @@ jobs:
         with:
           node-version: "19"
       - run: npm ci
-      - run: npm run build
       - uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }} 
-          username: ${{ secrets.USERNAME }} 
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }} 
+          port: ${{ secrets.PORT }}
           script: |
             cd /var/www/toolloaner/backend
             git pull
