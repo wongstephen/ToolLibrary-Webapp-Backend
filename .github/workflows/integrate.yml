@@ -10,12 +10,7 @@ jobs:
     steps:
       - name: Use secret 1
         run: echo ${{ secrets.DATABASE_URL }}
-      - name Use secret 2
-        run: echo ${{ secrets.CLOUDINARY_CLOUD_NAME }}
-      - name Use secret 3
-        run: echo ${{ secrets.CLOUDINARY_API_KEY }}
-      - name Use secret 4
-        run: echo ${{ secrets.CLOUDINARY_API_SECRET }}
+
 
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
