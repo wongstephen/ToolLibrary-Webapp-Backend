@@ -10,7 +10,8 @@ jobs:
     steps:
       - name: Use secret 1
         run: echo ${{ secrets.DATABASE_URL }}
-      - run: console.log({ secrets.DATABASE_URL })
+      - name: Log environment variable
+        run: echo "DATABASE_URL=${{ secrets.DATABASE_URL }}"
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
