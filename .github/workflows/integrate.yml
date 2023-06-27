@@ -7,11 +7,12 @@ on:
 jobs:
   test_pull_request:
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+      CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}}
+      CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
     steps:
-      - name: Use secret 1
-        run: echo ${{ secrets.DATABASE_URL }}
-      - name: Log environment variable
-        run: echo "DATABASE_URL=${{ secrets.DATABASE_URL }}"
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
