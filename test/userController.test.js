@@ -41,7 +41,7 @@ describe("UserController", () => {
       const response = await request
         .post("/users/signup")
         .send({ email: "newuser@example.com", password: "password123" });
-      expect(response.status).to.equal(500);
+      expect(response.status).to.equal(200);
     });
   });
 
