@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
-app.set("port", process.env.PORT || 8000);
+app.set("port", process.env.PORT || 8020);
 
 // Express Middleware
 app.use(express.json());

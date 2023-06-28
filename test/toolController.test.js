@@ -28,8 +28,6 @@ describe("toolController", () => {
       expect(response.status).to.equal(401);
     });
 
-    after(() => {
-      process.exit();
-    });
+    
   });
 });
