@@ -8,5 +8,3 @@ To this day, I do not remember if I loaned out my cat claw or misplaced it.
 
 Entity Relationship Diagram:
 <img src="./assets/erd.png">
-
-d.
