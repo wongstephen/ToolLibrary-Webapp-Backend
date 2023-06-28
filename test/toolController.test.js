@@ -28,6 +28,44 @@ describe("toolController", () => {
       expect(response.status).to.equal(401);
     });
 
-    
+    it("should not retrieve tools for invalid token", async () => {
+      const response = await request
+        .get("/tools")
+        .set("Authorization", `Bearer ${authToken}123`);
+      expect(response.status).to.equal(401);
+    });
+
+    it("should post a new tool with tool name only", async () => {
+      const response = await request
+        .post("/tools/image")
+        .set("Authorization", `Bearer ${authToken}`)
+        .set("Content-Type", "multipart/form-data")
+        .field("name", "Shovel");
+      expect(response.status).to.equal(201);
+      expect(response.body).to.have.property("_id");
+      expect(response.body).to.have.property("name", "Shovel");
+    });
+
+    it("should not post a new tool with loanee only", async () => {
+      const response = await request
+        .post("/tools/image")
+        .set("Authorization", `Bearer ${authToken}`)
+        .set("Content-Type", "multipart/form-data")
+        .field("name", "")
+        .field("loanee", "Shawn");
+      console.log(response.status);
+      expect(response.status).to.equal(500);
+    });
+
+    it("should not post a new tool with name and loanee", async () => {
+      const response = await request
+        .post("/tools/image")
+        .set("Authorization", `Bearer ${authToken}`)
+        .set("Content-Type", "multipart/form-data")
+        .field("name", "Wrench")
+        .field("loanee", "Shawn");
+      console.log(response.status);
+      expect(response.status).to.equal(201);
+    });
   });
 });
