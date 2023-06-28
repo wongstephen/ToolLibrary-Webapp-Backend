@@ -4,8 +4,6 @@ on:
   push:
     branches: [main] #runs on every push on the main branch
 
-debug: true
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
