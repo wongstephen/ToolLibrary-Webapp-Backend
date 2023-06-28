@@ -101,9 +101,10 @@ router.post(
       const user = await User.findById(toolData.owner);
       await user.tool.push(toolData);
       await user.save();
-      return res.status(201).json("Image sucessfully Uplaoded").end();
+      const createdTool = user.tool[user.tool.length - 1];
+      return res.status(201).json(createdTool).end();
     } catch (err) {
-      next;
+      next(err);
     }
   }
 );
