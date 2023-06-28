@@ -42,7 +42,7 @@ router.get("/", requireToken, async (req, res, next) => {
   try {
     const userId = req.user._id;
     const data = await User.findById(userId);
-    res.json(data.tool);
+    res.status(200).json(data.tool);
   } catch (err) {
     next(err);
   }
