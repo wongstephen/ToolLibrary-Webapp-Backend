@@ -24,3 +24,4 @@ jobs:
             git pull
             npm ci
             pm2 restart all
+            
