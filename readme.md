@@ -9,5 +9,4 @@ To this day, I do not remember if I loaned out my cat claw or misplaced it.
 Entity Relationship Diagram:
 <img src="./assets/erd.png">
 
-
-I am currently exploring the option of enabling users to log in using a demo account with a designated password. This would trigger the creation of a new user account with pre-seeded data in the backend.
+d.
