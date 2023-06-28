@@ -2,23 +2,23 @@ name: Digital Ocean Droplet CD
 
 on:
   push:
-    branches: [main]
+    branches: [main] #runs on every push on the main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: "19"
+          node-version: "18"
       - run: npm ci
-      - uses: appleboy/ssh-action@v0.1.7
+      - uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
+          username: ${{ secrets.  USERNAME }}
           key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
+          port: 22
           script: |
             cd /var/www/toolloaner/backend
             git pull
