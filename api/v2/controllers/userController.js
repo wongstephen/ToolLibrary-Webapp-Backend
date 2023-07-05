@@ -7,6 +7,10 @@ const { createUserToken, requireToken } = require("../../../middleware/auth");
 const User = require("../../../models/User");
 const seeds = require("../../../seeds");
 
+router.get("/", async (req, res) => {
+  res.status(403).send("Invalid Route");
+});
+
 // demo account
 const seedDemo = async (demoEmail) => {
   const user = await User.findOne({ email: demoEmail });
@@ -85,23 +89,13 @@ router.delete("/", requireToken, async (req, res, next) => {
   }
 });
 
+//delete user by id at /user/:id
 router.delete("/:id", async (req, res, next) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
     res.status(200).json(deletedUser);
   } catch (err) {
     res.status(401);
-  }
-});
-
-router.post("/deletedemos", async (req, res, next) => {
-  try {
-    const delDemo = await User.deleteMany({
-      email: { $regex: /demo/i },
-    });
-    res.json(delDemo);
-  } catch (err) {
-    next(err);
   }
 });
 
