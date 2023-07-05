@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User");
+const User = require("../../../models/User");
 const multer = require("multer");
 const path = require("path");
 const cloudinary = require("cloudinary").v2;
@@ -10,9 +10,9 @@ const {
   handleValidateId,
   handleRecordExists,
   handleValidateOwnership,
-} = require("../middleware/custom_errors");
+} = require("../../../middleware/custom_errors");
 
-const { requireToken } = require("../middleware/auth");
+const { requireToken } = require("../../../middleware/auth");
 
 const storage = multer.diskStorage({});
 const upload = multer({

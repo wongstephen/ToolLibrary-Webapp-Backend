@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/User");
+const User = require("../../../models/User");
 const multer = require("multer");
 const path = require("path");
 const cloudinary = require("cloudinary").v2;
@@ -10,9 +10,9 @@ const {
   handleValidateId,
   handleRecordExists,
   handleValidateOwnership,
-} = require("../middleware/custom_errors");
+} = require("../../../middleware/custom_errors");
 
-const { requireToken } = require("../middleware/auth");
+const { requireToken } = require("../../../middleware/auth");
 
 const storage = multer.diskStorage({});
 const upload = multer({
@@ -48,26 +48,9 @@ router.get("/", requireToken, async (req, res, next) => {
   }
 });
 
-//create
-router.post("/", requireToken, async (req, res, next) => {
-  try {
-    const toolData = req.body;
-    toolData.owner = req.user._id;
-
-    const user = await User.findById(toolData.owner);
-
-    await user.tool.push(toolData);
-    await user.save();
-    return res.status(201).json(user);
-  } catch (err) {
-    next(err);
-  }
-});
-
-//create with image
-//post a form with image
+// post /tools/image
 router.post(
-  "/image",
+  "/",
   requireToken,
   upload.single("userImage"),
   async (req, res, next) => {
