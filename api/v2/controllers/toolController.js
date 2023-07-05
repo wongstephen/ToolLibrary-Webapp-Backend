@@ -48,7 +48,7 @@ router.get("/", requireToken, async (req, res, next) => {
   }
 });
 
-// post /tools/image
+// post /tools/
 router.post(
   "/",
   requireToken,
@@ -84,6 +84,7 @@ router.post(
       await user.tool.push(toolData);
       await user.save();
       const createdTool = user.tool[user.tool.length - 1];
+      res.header("Access-Control-Allow-Credentials", true);
       return res.status(201).json(createdTool).end();
     } catch (err) {
       next(err);
