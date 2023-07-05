@@ -30,6 +30,9 @@ app.use("/users", userController);
 const cvController = require("./controllers/toolController");
 app.use("/tools", cvController);
 
+const apiController = require("./api");
+app.use("/api", apiController);
+
 const server = app.listen(app.get("port"), () => {
   console.log(`🏃 on port: ${app.get("port")}, better catch it!`);
 });
