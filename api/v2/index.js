@@ -7,4 +7,8 @@ router.use("/user", userController);
 const toolController = require("./controllers/toolController.js");
 router.use("/tool", toolController);
 
+router.get("/", async (req, res) => {
+  res.status(200).send("V2 API");
+});
+
 module.exports = router;

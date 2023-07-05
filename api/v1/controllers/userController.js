@@ -92,15 +92,4 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
-router.post("/deletedemos", async (req, res, next) => {
-  try {
-    const delDemo = await User.deleteMany({
-      email: { $regex: /demo/i },
-    });
-    res.json(delDemo);
-  } catch (err) {
-    next(err);
-  }
-});
-
 module.exports = router;

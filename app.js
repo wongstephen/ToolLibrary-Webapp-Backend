@@ -35,6 +35,19 @@ app.use("/tools", cvController);
 const apiController = require("./api");
 app.use("/api", apiController);
 
+// delete demos
+const User = require("./models/User");
+app.use("/deletedemos", async (req, res, next) => {
+  try {
+    const delDemo = await User.deleteMany({
+      email: { $regex: /demo/i },
+    });
+    res.json(delDemo);
+  } catch (err) {
+    next(err);
+  }
+});
+
 const server = app.listen(app.get("port"), () => {
   console.log(`🏃 on port: ${app.get("port")}, better catch it!`);
 });
