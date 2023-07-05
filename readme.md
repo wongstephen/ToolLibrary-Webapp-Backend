@@ -8,3 +8,29 @@ To this day, I do not remember if I loaned out my cat claw or misplaced it.
 
 Entity Relationship Diagram:
 <img src="./assets/erd.png">
+
+## API
+
+### Versions
+
+- /api/v1
+- /api/v2
+  - updated controller to allow image upload to cloudinary and save returned url to database.
+
+#### Users
+
+User Routes:
+
+- GET /users
+- POST /users
+- DELETE /users/:id
+- SIGNIN /users/signin
+
+#### Tools
+
+Tool Routes
+
+- GET /tools
+- POST /tools
+- PATCH /tools/:id
+- DELETE /tools/:id
