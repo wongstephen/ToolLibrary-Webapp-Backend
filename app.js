@@ -23,15 +23,15 @@ app.get("/", (req, res) => {
   );
 });
 
-// Controllers
+// Controllers (v.0)
 const userController = require("./controllers/userController");
 app.use("/users", userController);
-
 const cvController = require("./controllers/toolController");
 app.use("/tools", cvController);
 
 // new api routes
 // /[version]/user or /[version]/tool
+// note, routes are not pluralized
 const apiController = require("./api");
 app.use("/api", apiController);
 
