@@ -84,8 +84,8 @@ router.post(
       await user.tool.push(toolData);
       await user.save();
       const createdTool = user.tool[user.tool.length - 1];
-      res.header("Access-Control-Allow-Credentials", true);
-      return res.status(201).json(createdTool).end();
+      res.set({ "Access-Control-Allow-Credentials": true });
+      return res.status(201).json(createdTool);
     } catch (err) {
       next(err);
     }
