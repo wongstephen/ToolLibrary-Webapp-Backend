@@ -30,6 +30,8 @@ app.use("/users", userController);
 const cvController = require("./controllers/toolController");
 app.use("/tools", cvController);
 
+// new api routes
+// /[version]/user or /[version]/tool
 const apiController = require("./api");
 app.use("/api", apiController);
 
