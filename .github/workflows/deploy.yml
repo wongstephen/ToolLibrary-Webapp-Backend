@@ -1,4 +1,4 @@
-name: Digital Ocean Droplet CD
+name: Deploy to Digital Ocean Droplet
 
 on:
   push:
