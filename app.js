@@ -8,7 +8,9 @@ app.set("port", process.env.PORT || 8020);
 // Express Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.use(cors());
+
 app.use(bodyParser.json({ limit: "12mb" }));
 app.use(bodyParser.urlencoded({ limit: "12mb", extended: true }));
 
