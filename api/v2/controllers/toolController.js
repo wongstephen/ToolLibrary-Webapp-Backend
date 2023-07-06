@@ -74,20 +74,27 @@ router.post(
       const toolData = req.body;
       toolData.owner = req.user._id;
 
-      if (req.file) {
-        console.log(req.file.size);
-        // upload image to cloudinary
-        const options = {
-          use_filename: false,
-          unique_filename: false,
-          overwrite: true,
-          folder: "tool_library",
-        };
-        const result = await cloudinary.uploader.upload(req.file.path, options);
-        console.log(result);
-        const objectURL = result.secure_url;
-        toolData.toolImage = objectURL;
-      }
+      const handleFile = async () => {
+        if (req.file) {
+          console.log(req.file.size);
+          // upload image to cloudinary
+          const options = {
+            use_filename: false,
+            unique_filename: false,
+            overwrite: true,
+            folder: "tool_library",
+          };
+          const result = await cloudinary.uploader.upload(
+            req.file.path,
+            options
+          );
+          console.log(result);
+          const objectURL = result.secure_url;
+          toolData.toolImage = objectURL;
+        }
+      };
+
+      await handleFile();
 
       /* What the object looks like:
         [Object: null prototype] {
