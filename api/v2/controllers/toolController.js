@@ -35,7 +35,7 @@ const upload = multer({
       cb(new Error("File type is not supported"), false);
       return;
     }
-    if (file.size > 1048576) {
+    if (file.size > 10 * 1024 * 1024) {
       console.log("file too big " + file.size);
       cb(new Error("File is too big, max size is 10MB"), false);
       return;
