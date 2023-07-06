@@ -14,14 +14,23 @@ const {
 
 const { requireToken } = require("../../../middleware/auth");
 
-const storage = multer.memoryStorage();
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "/");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, file.fieldname + "-" + uniqueSuffix);
+  },
+});
 
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 10 * 1024 * 1024, // Set the desired file size limit (e.g., 10MB)
+    fileSize: 10000000, // 10MB
   },
   fileFilter: (req, file, cb) => {
+    console.log(file);
     let ext = path.extname(file.originalname);
     lowerExt = ext.toLocaleLowerCase();
     if (
@@ -33,11 +42,6 @@ const upload = multer({
       lowerExt !== ".webp"
     ) {
       cb(new Error("File type is not supported"), false);
-      return;
-    }
-    if (file.size > 1048576) {
-      console.log("file too big " + file.size);
-      cb(new Error("File is too big, max size is 10MB"), false);
       return;
     }
     cb(null, true);

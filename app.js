@@ -54,7 +54,12 @@ app.use("/deletedemos", async (req, res, next) => {
 });
 
 const server = app.listen(app.get("port"), () => {
-  console.log(`🏃 on port: ${app.get("port")}, better catch it!`);
+  const today = new Date();
+  console.log(
+    `Running on port: ${app.get("port")}. ${today.toLocaleString("en-US", {
+      timeZone: "America/Los_Angeles",
+    })}`
+  );
 });
 
 module.exports = server;
