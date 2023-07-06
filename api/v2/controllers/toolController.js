@@ -68,11 +68,14 @@ router.post(
   upload.single("userImage"),
   async (req, res, next) => {
     try {
+      console.log("user upload initiated");
+      console.log(req.file);
       // form object with data and image url
       const toolData = req.body;
       toolData.owner = req.user._id;
 
       if (req.file) {
+        console.log(req.file.size);
         // upload image to cloudinary
         const options = {
           use_filename: false,
