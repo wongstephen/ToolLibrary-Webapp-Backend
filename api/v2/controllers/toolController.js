@@ -68,12 +68,13 @@ router.post(
       if (req.file) {
         // upload image to cloudinary
         const options = {
-          use_filename: true,
+          use_filename: false,
           unique_filename: false,
           overwrite: true,
           folder: "tool_library",
         };
         const result = await cloudinary.uploader.upload(req.file.path, options);
+        console.log(result);
         const objectURL = result.secure_url;
         toolData.toolImage = objectURL;
       }
