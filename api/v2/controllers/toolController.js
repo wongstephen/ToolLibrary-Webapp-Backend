@@ -19,7 +19,7 @@ const storage = multer.diskStorage({});
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 1048576, // 10mb
+    fileSize: 10 * 1024 * 1024, // Set the desired file size limit (e.g., 10MB)
   },
   fileFilter: (req, file, cb) => {
     let ext = path.extname(file.originalname);
@@ -36,6 +36,7 @@ const upload = multer({
       return;
     }
     if (file.size > 1048576) {
+      console.log("file too big " + file.size);
       cb(new Error("File is too big, max size is 10MB"), false);
       return;
     }
