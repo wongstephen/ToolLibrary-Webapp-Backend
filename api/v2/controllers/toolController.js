@@ -15,14 +15,20 @@ const {
 const { requireToken } = require("../../../middleware/auth");
 
 const storage = multer.diskStorage({});
+
 const upload = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {
     let ext = path.extname(file.originalname);
+    lowerExt = ext.toLocaleLowerCase();
+
     if (
-      ext.toLocaleLowerCase() !== ".jpg" &&
-      ext !== ".jpeg" &&
-      ext !== ".png"
+      lowerExt !== ".jpg" &&
+      lowerExt !== ".jpeg" &&
+      lowerExt !== ".png" &&
+      lowerExt !== ".gif" &&
+      lowerExt !== ".svg" &&
+      lowerExt !== ".webp"
     ) {
       cb(new Error("File type is not supported"), false);
       return;
@@ -84,7 +90,6 @@ router.post(
       await user.tool.push(toolData);
       await user.save();
       const createdTool = user.tool[user.tool.length - 1];
-      res.set({ "Access-Control-Allow-Credentials": true });
       return res.status(201).json(createdTool);
     } catch (err) {
       next(err);
