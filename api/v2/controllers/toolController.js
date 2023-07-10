@@ -110,21 +110,41 @@ router.post(
 );
 
 // patch /tools/:id
-router.patch("/:id", requireToken, async (req, res, next) => {
-  const id = req.params.id;
-  const toolData = req.body;
-  try {
-    const user = await User.findOne({
-      "tool._id": id,
-    });
-    const tool = user.tool.id(id);
-    tool.set(toolData);
-    user.save();
-    res.status(202).json(user);
-  } catch (err) {
-    next(err);
+router.patch(
+  "/:id",
+  requireToken,
+  upload.single("toolImageFile"),
+  async (req, res, next) => {
+    const id = req.params.id;
+    const toolData = req.body;
+
+    if (req.file) {
+      const options = {
+        use_filename: false,
+        unique_filename: false,
+        overwrite: true,
+        folder: "tool_library",
+      };
+      console.log("uploading image to cloudinary...");
+      const result = await cloudinary.uploader.upload(req.file.path, options);
+      console.log(result);
+      const objectURL = result.secure_url;
+      toolData.toolImage = objectURL;
+    }
+
+    try {
+      const user = await User.findOne({
+        "tool._id": id,
+      });
+      const tool = user.tool.id(id);
+      tool.set(toolData);
+      await user.save();
+      return res.status(202).json(toolData);
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 // delete /tools/:id
 router.delete("/:id", requireToken, (req, res, next) => {
