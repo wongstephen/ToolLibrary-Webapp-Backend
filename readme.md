@@ -34,3 +34,7 @@ Tool Routes
 - POST /tools
 - PATCH /tools/:id
 - DELETE /tools/:id
+
+### Fixes
+
+- [x] Fixed the upload limit to 10mb. Nginx was limiting the upload size to 1mb.
