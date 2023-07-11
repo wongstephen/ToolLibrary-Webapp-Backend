@@ -1,4 +1,4 @@
-FROM node:19
+FROM node:18-bullseye
 
 WORKDIR /app
 
@@ -8,9 +8,7 @@ RUN npm install
 
 COPY . ./
 
-ENV PORT=3000
-
-EXPOSE $PORT
+EXPOSE 8080
 
 CMD ["npm", "run", "dev"]
 
