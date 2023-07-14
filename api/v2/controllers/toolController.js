@@ -69,7 +69,7 @@ router.get("/", requireToken, async (req, res, next) => {
 router.post(
   "/",
   requireToken,
-  upload.single("userImage"),
+  upload.single("toolImageFile"),
   async (req, res, next) => {
     try {
       console.log("user upload initiated");
