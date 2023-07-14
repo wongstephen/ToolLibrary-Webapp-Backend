@@ -69,7 +69,7 @@ router.get("/", requireToken, async (req, res, next) => {
 router.post(
   "/",
   requireToken,
-  upload.single("userImage"),
+  upload.single("toolImageFile"),
   async (req, res, next) => {
     try {
       // form object with data and image url
