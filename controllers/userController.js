@@ -19,8 +19,8 @@ const seeds = require("../seeds");
 
 // demo account
 const createDemo = async (email) => {
-  if (email === "demo@toollibrary.com") {
-    const demoEmail = "demo@toollibrary.com" + Math.floor(Math.random() * 1000);
+  if (email === "demo@toollibrary.com" || email === "demo@borrowninja.com") {
+    const demoEmail = "demo@borrowninja.com" + Math.floor(Math.random() * 1000);
     try {
       let hashedPw = await bcrypt.hash("password", 10);
       await User.create({
