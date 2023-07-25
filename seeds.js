@@ -1,23 +1,31 @@
 module.exports = [
   {
-    name: "Socket wrench set",
+    name: "Jack Lift",
     avator: "wrench",
     loanee: "Lily Bennett",
+    toolImage:
+      "https://res.cloudinary.com/dhibsqzad/image/upload/v1689276203/tool_library/s83fezqo86ovb69gcfdz.webp",
   },
   {
-    name: "Screwdriver set",
+    name: "Hammer",
     avator: "screwdriver",
     loanee: "Lily Bennett",
+    toolImage:
+      "https://res.cloudinary.com/dhibsqzad/image/upload/v1689276142/tool_library/grhxvhl5xcho2vrafoyh.jpg",
   },
   {
-    name: "Pliers",
+    name: "Air Hose",
     avator: "empty",
     loanee: "Lily Bennett",
+    toolImage:
+      "https://res.cloudinary.com/dhibsqzad/image/upload/v1689276178/tool_library/q99doyedvxcnwl7rqej3.jpg",
   },
   {
     name: "Adjustable wrench",
     avator: "wrench",
     loanee: "Lily Bennett",
+    toolImage:
+      "https://res.cloudinary.com/dhibsqzad/image/upload/v1689276232/tool_library/d6khy9vxqar769jrcqyg.jpg",
   },
   {
     name: "Oil filter wrench",
@@ -63,5 +71,12 @@ module.exports = [
     name: "Pry bar",
     avator: "empty",
     loanee: "",
+  },
+  {
+    name: "Water Sprinkler",
+    avator: "empty",
+    loanee: "",
+    toolImage:
+      "https://res.cloudinary.com/dhibsqzad/image/upload/v1689276280/tool_library/kiisg1eb8zsahddeok7d.jpg",
   },
 ];
