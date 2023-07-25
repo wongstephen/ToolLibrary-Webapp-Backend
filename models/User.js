@@ -15,6 +15,11 @@ const UserSchema = new Schema(
       required: true,
       trim: true,
     },
+    darkmode: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
     tool: [ToolSchema],
   },
   {

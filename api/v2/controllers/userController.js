@@ -99,4 +99,16 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
+router.patch("/:id", requireToken, async (req, res, next) => {
+  try {
+    const userId = req.params.id;
+    let user = await User.findById(userId);
+    Object.assign(user, req.body);
+    await user.save(user);
+    res.status(201).send(user);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

@@ -22,13 +22,11 @@ app.use(requestLogger);
 const { handleErrors } = require("./middleware/custom_errors");
 app.use(handleErrors);
 
-if (process.env.NODE_ENV === "development") {
-  console.log("DEV ENVIRONMENT");
-}
+console.log(process.env.NODE_ENV);
 
 app.get("/", (req, res) => {
   res.send(
-    "<h1>Visit the Tool Library app at <a href='https://toollibrary.wongstephenk.com/'>https://toollibrary.wongstephenk.com/</a>!!</h1>"
+    "<h1>Visit the BorrowNinja app at <a href='https://toollibrary.wongstephenk.com/'>https://toollibrary.wongstephenk.com/</a>!!</h1>"
   );
 });
 
